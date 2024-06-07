@@ -8,38 +8,25 @@
 <input type="text" id="display"
 disabled>
 <div id="buttons">
-<div
-<div class="button">7</div>
-<div
-<div class="button">8</div>
-<div
-<div class="button">9</div>
-<div
-<div class="button">/</div>
-<div
-<div class="button">4</div>
-<div
-<div class="button">5</div>
-<div
-<div class="button">6</div>
-<div
-<div class="button">*</div>
-<div
-<div class="button">1</div>
-<div
-<div class="button">2</div>
-<div
-<div class="button">3</div>
-<div
-<div class="button">-</div>
-<div
-<div class="button">0</div>
-<div
-<div class="button">.</div>
-<div
-<div class="button">=</div>
-<div
-<div class="button">+</div>
+<div class="button"("7", insert);
+<div class="button"("8", insert);
+<div class="button"("9", insert); 
+<div class="button">/(command)
+
+<div class="button"("4", insert);
+<div class="button"("5", insert);
+<div class="button"("6", insert);
+<div class="button">*(command)
+
+<div class="button"("1", insert);
+<div class="button"("2", insert);
+<div class="button"("3", insert);
+<div class="button"-(command)
+
+<div class="button"("0", insert);
+<div class="button"(".", insert);
+<div class="button"=(command)
+<div class="button"+(command)
 </div>
 </div>
 </body>

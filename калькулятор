@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>простой калькулятор</title>
+</head>
+<body>
+<div id="calculator">
+<input type="text" id="display"
+disabled>
+<div id="buttons">
+<div class="button">7</div>
+<div class="button">8</div>
+<div class="button">9</div>
+<div class="button">/</div>
+<div class="button">4</div>
+<div class="button">5</div>
+<div class="button">6</div>
+<div class="button">*</div>
+<div class="button">1</div>
+<div class="button">2</div>
+<div class="button">3</div>
+<div class="button">-</div>
+<div class="button">0</div>
+<div class="button">.</div>
+<div class="button">=</div>
+<div class="button">+</div>
+</div>
+</div>
+</body>
+</html>
+<style>
+    #calculator {
+        width: 300px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f3f3f3;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #display {
+        width: 100%;
+        height: 50px;
+        text-align: right;
+        margin-bottom: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+        border: none;
+        background-color: #fff;
+        font-size: 20px;
+        border-radius: 10px;
+    }
+
+    .button {
+        width: 66px;
+        height: 40px;
+        margin: 5px;
+        display: inline-block;
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+
+    .button.equals {
+        background-color: #4CAF50;
+    }
+
+    .button.equals:hover {
+        background-color: #45a049;
+    }
+</style>
+<script>
+    var keys = document.querySelectorAll('#calculator span');
+    var operators = ['+', '-', 'x', '/'];
+    var decimalAdded = false;
+
+    for (var i = 0; i < keys.length; i++) {
+        keys[i].onclick = function(e) {
+            var input = document.querySelector('#display');
+            var inputVal = input.innerHTML;
+            var btnVal = this.innerHTML;
+            
+            if (btnVal == 'C') {
+                input.innerHTML = '';
+                decimalAdded = false;
+            }
+
+            else if (btnVal == '=') {
+                var equation = inputVal;
+                var lastChar = equation[equation.length - 1];
+            
+                equation = equation.replace(/x/g, '*');
+            
+                if (operators.indexOf(lastChar) > -1 || lastChar == '.')
+                    equation = equation.replace(/.$/, '');
+            
+                if (equation)
+                    input.innerHTML = eval(equation);
+                
+                decimalAdded = false;
+            }
+            
+        
+            
+            else if (operators.indexOf(btnVal) > -1) {
+                var lastChar = inputVal[inputVal.length - 1];
+            
+                if (inputVal != '' && operators.indexOf(lastChar) == -1) 
+                    input.innerHTML += btnVal;
+            
+                else if (inputVal == '' && btnVal == '-') 
+                    input.innerHTML += btnVal;
+            
+                if (operators.indexOf(lastChar) > -1 && inputVal.length > 1) {
+                    input.innerHTML = inputVal.replace(/.$/, btnVal);
+                }
+            
+                decimalAdded =false;
+            }
+            
+            else if (btnVal == '.') {
+                if (!decimalAdded) {
+                    input.innerHTML += btnVal;
+                    decimalAdded = true;
+                }
+            }
+            
+            else {
+                input.innerHTML += btnVal;
+            }
+            
+            e.preventDefault();
+        } 
+    }
+</script>
